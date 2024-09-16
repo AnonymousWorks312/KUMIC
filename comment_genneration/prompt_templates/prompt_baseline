@@ -1,0 +1,7 @@
+# You are an expert Java programmer, please {} the test code in a concise sentence:
+# Note that generate the comment begin with the words '# The comment is:'
+
+"""{}
+#For the test code:
+{}
+# The comment is:

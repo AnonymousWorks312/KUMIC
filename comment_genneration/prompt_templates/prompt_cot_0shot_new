@@ -1,0 +1,11 @@
+# You are an expert Java programmer. Give you a code snippet, your task is to {} the code in a concise sentence.
+# To solve the problem, do the following:
+Step 1 - extract the important statements from the code.
+Step 2 - {} the code according to the code and the important statements.
+
+# For the test code:
+{}
+# Please extract the most important statements of the test code delimited in about 10 lines. Then analyse the code and important statements to use one sentence to {} the code delimited in about 12 words. Please output the results in the following format:
+
+# Step 1 - Important statements in the code and generate in line-num and code pair:...
+# Step 2 - The comment:...

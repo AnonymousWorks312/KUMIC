@@ -1,0 +1,12 @@
+# You are an expert Java programmer. There are {} examples you should learn from, consist of the code, important statements in the code, and the corresponding code comment. You need to first analyse how to extract the important statements from the code and finally try to {} the code in a concise sentence according to the code and its important statements.
+# Note that important statements should  begin with the words '# Important statements in the code:' and the generated comment should  begin with the words '# The comment is:'.
+
+'''{}
+
+# For the test code:
+{}
+# Please imitate the above example, extract the most important statements of the test code delimited in about 10 lines. Then analyse the code and  important statements to use one sentence to {} the test code delimited in about 20 words.
+
+# Important statements in the code:
+
+# The comment is:
