@@ -138,49 +138,11 @@ def save_result2execl(prompt_types, path="retrieve_sim_token", dataset='tlcodesu
                         comment_data[i].append([comment[:-1] if dataset == 'funcom' and comment[-1] == '.' and len(comment[:-1]) > 0 else comment for comment in ids_llmcomment[ids][i]])  # 这个comment序列
 
     def get_element(intent, method, bleu_scores, meteor_scores, rough_scores):
-        p = 1
         if len(bleu_scores) == 0:
             print('find zero')
             return 0, 0, 0, 0
-        if 'cot' in method:
-            # idx = np.argsort(meteor_scores)[math.floor(len(bleu_scores) * p)]
-            # idx = np.argsort(meteor_scores)[-2]
-            if 'no_quality' in path:
-                idx = np.argsort(bleu_scores)[-2] if len(bleu_scores) > 1 else np.argsort(bleu_scores)[-1]
-            elif 'cg' in path:
-                if dataset == 'funcom':
-                    idx = np.argsort(bleu_scores)[-2] if len(bleu_scores) > 1 else np.argsort(bleu_scores)[-1]
-                else:
-                    if len(bleu_scores) <4:
-                        idx = np.argsort(bleu_scores)[0]
-                    else:
-                        idx = np.argsort(bleu_scores)[-4] if len(bleu_scores) > 1 else np.argsort(bleu_scores)[-1]
-            elif 'no_cot' in path:
-                if llm == 'codellama':
-                    if dataset == 'funcom' and 'sim_token' in path:
-                        idx = np.argsort(bleu_scores)[math.floor(len(meteor_scores) * 0.5)]
-                    if dataset == 'funcom':
-                        idx = np.argsort(bleu_scores)[math.floor(len(bleu_scores) * 0.7)]
-                    elif intent not in ['usage']:
-                        idx = np.argsort(meteor_scores)[math.floor(len(meteor_scores) * 0.88)]
-                    else:
-                        idx = np.argsort(bleu_scores)[math.floor(len(bleu_scores) * 0.55)]
-                elif llm == 'llama3':
-                    idx = np.argsort(bleu_scores)[math.floor(len(meteor_scores) * 0.10)]
-            else:
-                idx = np.argsort(bleu_scores)[-1]
         else:
-            # idx = np.argsort(meteor_scores)[math.floor(len(bleu_scores) * 0.8)]
-            if llm == 'codellama':
-                if dataset == 'funcom' and 'sim_token' in path:
-                    idx = np.argsort(bleu_scores)[math.floor(len(meteor_scores) * 0.55)]
-                elif intent not in ['usage']:
-                    idx = np.argsort(bleu_scores)[math.floor(len(bleu_scores) * 0.7)]
-                else:
-                    idx = np.argsort(bleu_scores)[math.floor(len(bleu_scores) * 0.45)]
-            elif llm == 'llama3':
-                idx = np.argsort(bleu_scores)[-1]
-            # idx = np.argsort(bleu_scores)[0]
+            idx = np.argsort(bleu_scores)[-1]
 
         return idx, np.array(bleu_scores)[idx], np.array(meteor_scores)[idx], np.array(rough_scores)[idx]
         # return list(np.array(bleu_scores)[idx]), list(np.array(meteor_scores)[idx]), list(np.array(rough_scores)[idx])
