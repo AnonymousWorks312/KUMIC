@@ -81,7 +81,7 @@ def get_comment_from_file(prompt_types, path="retrieve_sim_token", result_file_n
     res = {intent: {} for intent in intents}
     reformat_res = {intent: {} for intent in intents}
 
-    for intent in intents:  # 遍历文件夹
+    for intent in intents: 
         print(f"in [{intent}]")
         ids_path = os.path.join(path, f'{intent}')
         if os.path.isdir(ids_path):
@@ -96,7 +96,7 @@ def get_comment_from_file(prompt_types, path="retrieve_sim_token", result_file_n
                     prompttype_comments = json.loads(f.read())  # {prompt_type:comments}
                     # pre_num_per_prompt = [len(prompttype_comments[key]) for key in prompttype_comments.keys()]
 
-                # 少预测了prompt或者没有预测出结果
+               
                 if len(prompttype_comments.keys()) < prompt_types_len:  # or min(pre_num_per_prompt) == 0:
                     print(f"fail=={os.path.join(ids_path, ids)}")
                     # print(prompttype_comments.keys())
@@ -188,7 +188,7 @@ def get_comment_by_re(llm_result):
             comment = re.sub(start_token, '', raw_comment)
             break
     if not comment.strip() and '.' in llm_result:
-        comment = re.search(r'.*?(\.)', llm_result).group()  # 选择第一句话
+        comment = re.search(r'.*?(\.)', llm_result).group()  
     elif not comment.strip():
         comment = llm_result
 
@@ -202,7 +202,7 @@ def reformat_comment(comment):
     lemmatizer = WordNetLemmatizer()
     words = nltk.word_tokenize(comment)
     tags = nltk.pos_tag(words)
-    # 将句子中所有动词的单数换为复数
+
     for idx, word in enumerate(tags):
         if word[1] == 'VBZ':
             words[idx] = lemmatizer.lemmatize(words[idx], pos='v')
@@ -225,7 +225,7 @@ def find_unpred_prompt_file(prompt_types, path="retrieve_sim_token", result_file
     intents = ['what', 'why', 'done', 'property', 'usage']
     res = {intent: {} for intent in intents}
     reformat_res = {intent: {} for intent in intents}
-    rest_prompt_data = {}  # 得到文件夹下的所有文件名称
+    rest_prompt_data = {}  
 
     def load_prompt_data(prompt_files_path):
         rest_prompt_data[prompt_files_path] = {}
@@ -237,7 +237,7 @@ def find_unpred_prompt_file(prompt_types, path="retrieve_sim_token", result_file
                         prompt = f.read()
                         rest_prompt_data[prompt_files_path][prompt_type] = prompt_templates[llm_type].format('You are an expert Java programmer.', prompt)
 
-    for intent in intents:  # 遍历文件夹
+    for intent in intents: 
         print(f"in [{intent}]")
         ids_path = os.path.join(path, f'{intent}')
         if os.path.isdir(ids_path):
@@ -247,7 +247,7 @@ def find_unpred_prompt_file(prompt_types, path="retrieve_sim_token", result_file
                 reformat_res[intent][ids] = {}
                 res_path = os.path.join(ids_path, ids, result_file_name)
                 if os.path.exists(res_path):
-                    # 不检查是否预测全
+
                     with open(res_path, 'r') as f:
                         prompttype_comments = json.loads(f.read())  # {prompt_type:comments}
                         pre_num_per_prompt = [len(prompttype_comments[key]) for key in prompttype_comments.keys()]
@@ -257,7 +257,7 @@ def find_unpred_prompt_file(prompt_types, path="retrieve_sim_token", result_file
                         load_prompt_data(prompt_files_path)
                         print(prompt_files_path)
                     else:
-                        # 少预测了prompt或者没有预测出结果
+                  
                         for prompt_type in prompt_types:
                             if prompt_type not in prompttype_comments.keys():
                                 prompt_files_path = os.path.join(ids_path, ids)
@@ -315,7 +315,7 @@ def run_vllm(path, gpus=[2, 3], llm_type='llama3', date='0623'):
         p.wait()
 
     for i, p in enumerate(processes):
-        print(f'子进程{i}已经结束，退出状态码为：{p.returncode}')
+        print(f'{p.returncode}')
 
     print("success")
 
