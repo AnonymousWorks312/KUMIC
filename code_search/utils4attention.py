@@ -175,10 +175,8 @@ def convert_examples_to_features(examples, label_list, max_seq_length,
 
         tokens_intent_code = tokenizer.tokenize(example.code_intent)
         code_tokenid2lineid = []
-        # 4=1个intent+3个分隔符
         usable_token_num = max_seq_length - (len(tokens_comment) + 4)
         if example.spl_code:
-            # 在单行token数的限制下尽可能选择更多行
             for code_line in example.spl_code:
                 if usable_token_num <= 0:
                     break
@@ -302,10 +300,8 @@ def convert_examples_to_features_code2comment(examples, label_list, max_seq_leng
 
         tokens_intent_code = tokenizer.tokenize(example.code_intent)
         code_tokenid2lineid = []
-        # 4=1个intent+3个分隔符
         usable_token_num = max_seq_length - (len(tokens_comment) + 4)
         if example.spl_code:
-            # 在单行token数的限制下尽可能选择更多行
             for code_line in example.spl_code:
                 if usable_token_num <= 0:
                     break
