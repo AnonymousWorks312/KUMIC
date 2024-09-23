@@ -27,12 +27,10 @@ def heatmap(attention_weights, x, y, title):
     attention_weights_head = transfer.fit_transform(attention_weights)
     print(attention_weights_head)
     print(attention_weights)
-    # 使用Seaborn设置热图样式
     # style.use('ggplot')
     sns.set()
     # sns.set_style('whitegrid')
 
-    # 绘制热图
     plt.figure(figsize=(40, 8))
     sns.heatmap(attention_weights_head,
                 cmap="Greens",
@@ -49,7 +47,6 @@ def heatmap(attention_weights, x, y, title):
 
 
 def multi_heatmap(attention_weights_list, x, y, title):
-    # 使用Seaborn设置热图样式
     # style.use('ggplot')
     sns.set()
     attention_weight_num = len(attention_weights_list)
@@ -60,7 +57,7 @@ def multi_heatmap(attention_weights_list, x, y, title):
             sns.heatmap(attention_weights_list[i], linewidths=0.05, ax=axs[i], cmap="Greens", xticklabels=x, yticklabels=y)
         else:
             sns.heatmap(attention_weights_list[i], linewidths=0.05, ax=axs[i], cmap="Greens", yticklabels=y)
-            axs[i].set_xticklabels([])  # 设置x轴图例为空值
+            axs[i].set_xticklabels([])  
         axs[i].set_title(title + str(i))
         axs[i].set_xlabel('')
         axs[i].set_ylabel('Code')
@@ -74,21 +71,18 @@ def multi_heatmap(attention_weights_list, x, y, title):
 
 
 def find_important_token_line(attention_weights, code_tokenid2lineid):
-    '''
-    :param attention_weights:多个decoder的attention_weight的列表
-    :param code_tokenid2lineid: 每个code中token对应的行号
-    '''
-    attention_lineid2token_index = {}  # 存储每行包含哪些attention token的id
+
+    attention_lineid2token_index = {}  
     if len(code_tokenid2lineid) == 0:
         return {}, []
-    line_id = 0  # 记录当前行号
-    current_line_token_num = code_tokenid2lineid[line_id]  # 当前所在行token数范围（最大值）
+    line_id = 0  
+    current_line_token_num = code_tokenid2lineid[line_id] 
 
 
     # 针对生成的comment中每个token
     for i in range(len(attention_weights)):
-        attention_token_index = np.where(attention_weights[i] != 0)[0]  # code中attention非零的token的在code中的index
-        attention_token2lineid = []  # 存储每个attention token所在的code行
+        attention_token_index = np.where(attention_weights[i] != 0)[0]
+        attention_token2lineid = [] 
 
         for token_index in attention_token_index:
             while token_index >= current_line_token_num and line_id < len(code_tokenid2lineid)-1:
@@ -103,10 +97,9 @@ def find_important_token_line(attention_weights, code_tokenid2lineid):
 
     data = []
 
-    # 计算每行code的总的attention
-    # key = 行号；value = 多个decoder的attention weight和
+
     line_attention_weight = {line_id: float(torch.sum(attention_weights[:, list(attention_lineid2token_index[line_id])])) for line_id in attention_lineid2token_index.keys()}
-    sorted_line_attention_weight = sorted(line_attention_weight.items(), key=lambda x: x[1], reverse=True)  # 根据attention由大到小排序
+    sorted_line_attention_weight = sorted(line_attention_weight.items(), key=lambda x: x[1], reverse=True) 
 
     return line_attention_weight, sorted_line_attention_weight
 
