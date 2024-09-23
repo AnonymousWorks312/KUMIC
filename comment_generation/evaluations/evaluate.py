@@ -36,7 +36,6 @@ def reformat_comment(comment):
     lemmatizer = WordNetLemmatizer()
     words = nltk.word_tokenize(comment)
     tags = nltk.pos_tag(words)
-    # 将句子中所有动词的单数换为复数
     for idx, word in enumerate(tags):
         if word[1] == 'VBZ':
             words[idx] = lemmatizer.lemmatize(words[idx], pos='v')
@@ -55,7 +54,7 @@ def print_evaluation4batch(name, target, inferences):
         print_evaluation(f"{name}-{idx}", target, inference)
 
 
-# 数据是分开存储的
+
 def save_result2execl(prompt_types, path="retrieve_sim_token", dataset='tlcodesum', date='0619', llm='llama3',
                       remove_duplicate=True):
     # prompt_types = ['baseline_0shot_comment2code', 'baseline_3shot_comment2code',
@@ -117,7 +116,7 @@ def save_result2execl(prompt_types, path="retrieve_sim_token", dataset='tlcodesu
     saved_data = {title: [] for title in titles}
 
     def load_comment(intents_comment):
-        # 将comment数据加载到execl
+
         for intent in intents:
             print(f"in {intent}")
             ids_llmcomment = intents_comment[intent]
@@ -133,9 +132,9 @@ def save_result2execl(prompt_types, path="retrieve_sim_token", dataset='tlcodesu
 
                 for i in prompt_types:
                     if i in cot_keys:
-                        comment_data[i].append([comment[:-1] if dataset == 'funcom' and comment[-1] == '.' and len(comment[:-1]) > 0 else comment for comment in ids_llmcomment_cot[ids][i]])  # 这个comment序列
+                        comment_data[i].append([comment[:-1] if dataset == 'funcom' and comment[-1] == '.' and len(comment[:-1]) > 0 else comment for comment in ids_llmcomment_cot[ids][i]])  
                     else:
-                        comment_data[i].append([comment[:-1] if dataset == 'funcom' and comment[-1] == '.' and len(comment[:-1]) > 0 else comment for comment in ids_llmcomment[ids][i]])  # 这个comment序列
+                        comment_data[i].append([comment[:-1] if dataset == 'funcom' and comment[-1] == '.' and len(comment[:-1]) > 0 else comment for comment in ids_llmcomment[ids][i]]) 
 
     def get_element(intent, method, bleu_scores, meteor_scores, rough_scores):
         if len(bleu_scores) == 0:
@@ -157,7 +156,7 @@ def save_result2execl(prompt_types, path="retrieve_sim_token", dataset='tlcodesu
         for method in tqdm(methods):
             comment_ref = []
             comment_pred = []
-            idx_list = []  # 记录每个ids对应comment数量的数组
+            idx_list = [] 
             if method == 'dome':
                 for i in range(len(comment_data['ids'])):
                     comment_num = 1
@@ -187,7 +186,7 @@ def save_result2execl(prompt_types, path="retrieve_sim_token", dataset='tlcodesu
     load_comment(intents_comment)
     meteor_score_dict = cal_meteor4batch()
 
-    # 对于每个case计算各种方法的bleu、meteor、rough-L_f1得分
+
     for i in tqdm(range(len(comment_data['ids']))):
         ground_truth = comment_data["ground_truth"][i]
         intent = comment_data["intent"][i]
@@ -223,7 +222,7 @@ def save_result2execl(prompt_types, path="retrieve_sim_token", dataset='tlcodesu
             sheets_data[sheet_name]["ids"].append(ids)
             sheets_data[sheet_name]["intent"].append(intent)
             sheets_data[sheet_name]["ground_truth"].append(1)
-    # 计算平均值
+
     for sheet_name in sheets_data.keys():
         sheets_data[sheet_name]["ids"].append('Average')
         sheets_data[sheet_name]["intent"].append('None')
@@ -423,24 +422,3 @@ if __name__ == '__main__':
                           llm='llama3',
                           remove_duplicate=True)
 
-    # find_low(path='./funcom/retrieve_sim_semantic',
-    #                       dataset='funcom',
-    #                       date='0629',
-    #                       llm='llama3',
-    #                       remove_duplicate=True)
-
-    # merge_zero_shot()
-    # exit(0)
-    # save_result2execl4old(path='./tlcodesum_no_quality/retrieve_sim_semantic',
-    #                       dataset='tlcodesum',
-    #                       date='0629',
-    #                       llm='llama3')
-    # save_result2execl4old(path='./tlcodesum_no_quality/retrieve_sim_token',
-    #                       dataset='tlcodesum',
-    #                       date='0629',
-    #                       llm='llama3')
-    # save_result2execl4one(path='./tlcodesum_fusion_quality/retrieve_sim_semantic',
-    #                       date='0625')
-    # read_excel_data()
-    # evaluate_quality()
-    # save_result2execl4intent()
