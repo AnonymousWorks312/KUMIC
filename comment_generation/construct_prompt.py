@@ -50,11 +50,10 @@ def construct_prompts(selected_testcases_ids=[], dataset="tlcodesum", sim_rule="
     # is_code_search_attention=["comment2code","code2comment",None]
     def sort_normalize(attention_dict, max_line_num=10, min_line_num=3):
         '''
-        :param attention_dict:根据正则化后的attention值对其排序
+        :param attention_dict:
         '''
 
         def normal(arr):
-            # 由于attention数值太少，使用sklearn的tranfer不大行
             res = []
             for x in arr:
                 tmp = float(x - np.min(arr)) / (np.max(arr) - np.min(arr))
@@ -119,12 +118,12 @@ def construct_prompts(selected_testcases_ids=[], dataset="tlcodesum", sim_rule="
     with open(f"dataset/{dataset}/train/intents/{intent}.train", "r+", encoding="utf-8") as f_train:
         traincases = {item["ids"]: item for item in jsonlines.Reader(f_train)}
     with open(f"dataset/{dataset}/test/intents/{sim_rule}/{sim_rule}_score.{intent}", "r+", encoding="utf8") as f_sim:
-        sim_traincases_ids = {item["ids"]: item["sim_code"] for item in jsonlines.Reader(f_sim)}  # 只有一个json数据
-    with open(f'./dataset/{dataset}/{mode}/code_split_format.{mode}', 'r') as f:  # 对code分行进行格式处理
+        sim_traincases_ids = {item["ids"]: item["sim_code"] for item in jsonlines.Reader(f_sim)} 
+    with open(f'./dataset/{dataset}/{mode}/code_split_format.{mode}', 'r') as f: 
         ids2code_stat_format_lines = {item["ids"]: item["code"] for item in jsonlines.Reader(f)}
 
     code_stat_attention_weight = None
-    if is_code_search_attention == "comment2code":  # 读取模型attention信息
+    if is_code_search_attention == "comment2code": 
         with open(f'dataset/{dataset}/{mode}/attentions/code_stat_attention_weight-cs.{mode}', 'r') as f:
             code_stat_attention_weight = [sort_normalize(item) for item in jsonlines.Reader(f)]
     elif is_code_search_attention == "code2comment":
@@ -134,7 +133,7 @@ def construct_prompts(selected_testcases_ids=[], dataset="tlcodesum", sim_rule="
         with open(f'dataset/{dataset}/{mode}/attentions/code_stat_attention_weight_-1.{mode}', 'r') as f:
             code_stat_attention_weight = [list(item.keys()) for item in jsonlines.Reader(f)]
 
-    # 选择提取目标
+
     selected_testcases_ids = list(sim_traincases_ids.keys()) if len(selected_testcases_ids) == 0 else selected_testcases_ids
     print(len(selected_testcases_ids))
 
@@ -146,7 +145,7 @@ def construct_prompts(selected_testcases_ids=[], dataset="tlcodesum", sim_rule="
 
         few_shot = ""
 
-        sim_traincase_code_ids_score = sim_traincases_ids[ids]  # 选择相似example
+        sim_traincase_code_ids_score = sim_traincases_ids[ids] 
         sim_score_standrad = 0.9 if sim_rule == 'sim_semantic' else 1
 
         example_score = np.array([not (is_quality and (sim_score <= sim_score_standrad and traincases_quality[sim_ids] < 0.5)) for (sim_ids, sim_score) in sim_traincase_code_ids_score])
@@ -156,15 +155,15 @@ def construct_prompts(selected_testcases_ids=[], dataset="tlcodesum", sim_rule="
 
         for i, idx in enumerate(select[:example_num]):
             (sim_ids, sim_score) = sim_traincase_code_ids_score[idx]
-            # 构造prompt
+
             # for i, (sim_ids, sim_score) in enumerate(sim_traincase_code_ids_score):
             sim_code = traincases[sim_ids]["raw_code"]
             sim_comment = traincases[sim_ids]["comment"]
             # sim_quality = traincases_quality[sim_ids]
-            # if current >= example_num:  # 已收集足够example
+            # if current >= example_num:
             #     break
             #
-            # if is_quality and (sim_score < 0.9 and sim_quality < 0.5):  # 质量未达标且相似度也未达标
+            # if is_quality and (sim_score < 0.9 and sim_quality < 0.5):  
             #     continue
 
             if llm == "baseline":
@@ -207,11 +206,11 @@ def construct_prompts_with_fix_examples(sim_traincase_code_ids_score, selected_t
                                         llm='cot', is_code_search_attention="comment2code", mode="train"):
     def sort_normalize(attention_dict, max_line_num=10, min_line_num=3):
         '''
-        :param attention_dict:根据正则化后的attention值对其排序
+        :param attention_dict:
         '''
 
         def normal(arr):
-            # 由于attention数值太少，使用sklearn的tranfer不大行
+
             res = []
             for x in arr:
                 tmp = float(x - np.min(arr)) / (np.max(arr) - np.min(arr))
@@ -278,11 +277,11 @@ def construct_prompts_with_fix_examples(sim_traincase_code_ids_score, selected_t
         traincases = {item["ids"]: item for item in jsonlines.Reader(f_train)}
     with open(f"dataset/{dataset}/test/intents/{sim_rule}/{sim_rule}_score.{intent}", "r+", encoding="utf8") as f_sim:
         sim_traincases_ids = {item["ids"]: item["sim_code"] for item in jsonlines.Reader(f_sim)}
-    with open(f'./dataset/{dataset}/{mode}/code_split_format.{mode}', 'r') as f:  # 对code分行进行格式处理
+    with open(f'./dataset/{dataset}/{mode}/code_split_format.{mode}', 'r') as f: 
         ids2code_stat_format_lines = {item["ids"]: item["code"] for item in jsonlines.Reader(f)}
 
     code_stat_attention_weight = None
-    if is_code_search_attention == "comment2code":  # 读取模型attention信息
+    if is_code_search_attention == "comment2code": 
         with open(f'dataset/{dataset}/{mode}/attentions/code_stat_attention_weight-cs.{mode}', 'r') as f:
             code_stat_attention_weight = [sort_normalize(item) for item in jsonlines.Reader(f)]
     elif is_code_search_attention == "code2comment":
@@ -294,7 +293,7 @@ def construct_prompts_with_fix_examples(sim_traincase_code_ids_score, selected_t
 
     ids2code_stat_attention_weight = {ids: attention_weight for ids, attention_weight in
                                       zip(ids2code_stat_format_lines.keys(), code_stat_attention_weight)}
-    # 选择提取目标
+
     selected_testcases_ids = list(sim_traincases_ids.keys()) if len(selected_testcases_ids) == 0 else selected_testcases_ids
 
     select = [i for i in range(example_num)]
@@ -313,7 +312,7 @@ def construct_prompts_with_fix_examples(sim_traincase_code_ids_score, selected_t
 
             for i, idx in enumerate(select[:example_num]):
                 sim_ids = sim_traincase_code_ids_score[idx]
-                # 构造prompt
+
                 sim_code = traincases[sim_ids]["raw_code"]
                 sim_comment = traincases[sim_ids]["comment"]
 
@@ -351,7 +350,7 @@ def construct_prompts_fusion_quality_sim(selected_testcases_ids=[], dataset="tlc
     # is_code_search_attention=["comment2code","code2comment",None]
     def sort_normalize(attention_dict, max_line_num=10, min_line_num=3):
         '''
-        :param attention_dict:根据正则化后的attention值对其排序
+        :param attention_dict:
         '''
 
         def normal(arr):
@@ -434,11 +433,11 @@ def construct_prompts_fusion_quality_sim(selected_testcases_ids=[], dataset="tlc
         traincases = {item["ids"]: item for item in jsonlines.Reader(f_train)}
     with open(f"dataset/{dataset}/test/intents/{sim_rule}/{sim_rule}_score.{intent}", "r+", encoding="utf8") as f_sim:
         sim_traincases_ids = {item["ids"]: item["sim_code"] for item in jsonlines.Reader(f_sim)}
-    with open(f'./dataset/{dataset}/{mode}/code_split_format.{mode}', 'r') as f:  # 对code分行进行格式处理
+    with open(f'./dataset/{dataset}/{mode}/code_split_format.{mode}', 'r') as f:  
         ids2code_stat_format_lines = {item["ids"]: item["code"] for item in jsonlines.Reader(f)}
 
     code_stat_attention_weight = None
-    if is_code_search_attention == "comment2code":  # 读取模型attention信息
+    if is_code_search_attention == "comment2code": 
         with open(f'dataset/{dataset}/{mode}/attentions/code_stat_attention_weight-cs.{mode}', 'r') as f:
             code_stat_attention_weight = [sort_normalize(item) for item in jsonlines.Reader(f)]
     elif is_code_search_attention == "code2comment":
@@ -450,7 +449,7 @@ def construct_prompts_fusion_quality_sim(selected_testcases_ids=[], dataset="tlc
 
     ids2code_stat_attention_weight = {ids: attention_weight for ids, attention_weight in
                                       zip(ids2code_stat_format_lines.keys(), code_stat_attention_weight)}
-    # 选择提取目标
+   
     selected_testcases_ids = list(sim_traincases_ids.keys()) if len(selected_testcases_ids) == 0 else selected_testcases_ids
     print(len(selected_testcases_ids))
 
@@ -464,7 +463,7 @@ def construct_prompts_fusion_quality_sim(selected_testcases_ids=[], dataset="tlc
 
             few_shot = ""
 
-            sim_traincase_code_ids_score = sim_traincases_ids[ids]  # 选择相似example
+            sim_traincase_code_ids_score = sim_traincases_ids[ids]  
             if is_quality:
                 # fusion_example_score = [k * sim_score + (1 - k) * traincases_quality[sim_ids] if sim_score < 0.85 else 1 for (sim_ids, sim_score) in sim_traincase_code_ids_score]
                 # select = list(sorted(np.argsort(-np.array(fusion_example_score))[:example_num]))
