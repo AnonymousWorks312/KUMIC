@@ -65,7 +65,7 @@ if __name__ == "__main__":
     filepath = args.source_file
 
     with open(filepath, "rb") as f:
-        part_prompt_data = [item for item in jsonlines.Reader(f)][0]  # 只有一条数据
+        part_prompt_data = [item for item in jsonlines.Reader(f)][0]  
     available_gpus = os.environ['CUDA_VISIBLE_DEVICES'].split(',')
     # avoid huggingface/tokenizers process dead lock
     os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -73,16 +73,10 @@ if __name__ == "__main__":
     if args.temperature == 0:
         args.top_p = 1.0
     if 'Llama-3' in args.model:
-        # llama3最少需要4张卡，2张卡vllm会报并发错误，需要设置enforce_eager和disable_custom_all_reduce；
-        # llama3需要的swap_space > 4
+
         llm = LLM(model=args.model, tensor_parallel_size=len(available_gpus), gpu_memory_utilization=0.95, trust_remote_code=True,
                   max_model_len=16384, max_seq_len_to_capture=16384,
                   swap_space=20, enforce_eager=True, disable_custom_all_reduce=True)
-        # llm = LLM(model=args.model, tensor_parallel_size=len(available_gpus), gpu_memory_utilization=0.95, trust_remote_code=True,
-        #           max_model_len=16384, max_seq_len_to_capture=16384)
-        # llm = LLM(model=args.model, tensor_parallel_size=len(available_gpus), gpu_memory_utilization=0.95, trust_remote_code=True,
-        #           max_model_len=16384, max_seq_len_to_capture=16384,
-        #           swap_space=20)
     else:
         llm = LLM(model=args.model, tensor_parallel_size=len(available_gpus), gpu_memory_utilization=0.95, trust_remote_code=True,
                   max_model_len=16384, max_seq_len_to_capture=16384)
@@ -105,7 +99,7 @@ if __name__ == "__main__":
         try:
             outputs = llm.generate(prompts, sampling_params=sampling_params, use_tqdm=False)
         # outputs = sorted(outputs, key=lambda x: int(x.request_id)) # sort outputs by request_id
-        #     # 若没有生成对应prompt的结果，则最多循环2次
+
         #     for i in range(2):
         #         if len(outputs) >= len(prompt_names):
         #             break
@@ -116,14 +110,14 @@ if __name__ == "__main__":
             for output in outputs:
                 current_request_id = int(output.request_id) % len(prompt_names)
                 prompt_name = prompt_names[current_request_id]
-                res[prompt_name] = [o.text for o in output.outputs if len(o.text) > 0][:10] # 最多取10个元素
+                res[prompt_name] = [o.text for o in output.outputs if len(o.text) > 0][:10] 
                 if len(res[prompt_name]) == 0:
                     print(f'{prompt_path} {prompt_name} : {len(res[prompt_name])}')
 
             with open(os.path.join(prompt_path, args.result_file_name), 'w+') as f:
                 json.dump(res, f)
                 f.flush()
-        except RuntimeError as e:  # e 为异常类型的一个实例
+        except RuntimeError as e: 
             print('runtime error')
             print(e)
             print(sys.exc_info())
@@ -134,8 +128,7 @@ if __name__ == "__main__":
             torch.cuda.empty_cache()
 
             if 'Llama-3' in args.model:
-                # llama3最少需要2张卡，2张卡vllm会报并发错误，需要设置enforce_eager和disable_custom_all_reduce；
-                # llama3需要的swap_space > 4
+
                 llm = LLM(model=args.model, tensor_parallel_size=len(available_gpus), gpu_memory_utilization=0.95, trust_remote_code=True,
                           max_model_len=16384, max_seq_len_to_capture=16384,
                           swap_space=32, enforce_eager=True, disable_custom_all_reduce=True)
@@ -147,7 +140,7 @@ if __name__ == "__main__":
                           max_model_len=16384, max_seq_len_to_capture=16384)
         except Exception as e:
             print('error')
-            print(e)  # 输出：division by zero
+            print(e) 
             print(sys.exc_info())
             # del a vllm.executor.ray_gpu_executor.RayGPUExecutor object
 
