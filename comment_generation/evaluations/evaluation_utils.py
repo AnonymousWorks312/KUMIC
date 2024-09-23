@@ -179,16 +179,13 @@ def bleu_final(refs, candidate):
 
 
 def individual_bleu(target, inference):
-    # 分词
     target_fenci = ' '.join(jieba.cut(target))
     inference_fenci = ' '.join(jieba.cut(inference))
 
-    # reference是标准答案 是一个列表，可以有多个参考答案，每个参考答案都是分词后使用split()函数拆分的子列表
-    # # 举个reference例子
+
     # reference = [['this', 'is', 'a', 'duck']]
-    reference = []  # 给定标准译文
-    candidate = []  # 神经网络生成的句子
-    # 计算BLEU
+    reference = []  
+    candidate = [] 
     reference.append(target_fenci.split())
     candidate = (inference_fenci.split())
     bleu_1_gram = sentence_bleu(reference, candidate, weights=(1, 0, 0, 0))
@@ -209,32 +206,31 @@ def cumulative_bleu(reference, candidate):
 
 
 def calculate_meteor(target, inference):
-    # 分词
+
     target_fenci = ' '.join(jieba.cut(target))
     inference_fenci = ' '.join(jieba.cut(inference))
 
-    # reference是标准答案 是一个列表，可以有多个参考答案，每个参考答案都是分词后使用split()函数拆分的子列表
-    # # 举个reference例子
+
     # reference = [['this', 'is', 'a', 'duck']]
-    reference = []  # 给定标准译文
-    candidate = []  # 神经网络生成的句子
-    # 计算BLEU
+    reference = []  
+    candidate = [] 
+
     reference.append(target_fenci.split())
     candidate = (inference_fenci.split())
 
-    # 计算 METEOR 指标
+
     meteor = meteor_score.meteor_score(reference, candidate)
 
-    # 打印结果
+
 
     return meteor
 
 
 def calculate_rough(target, inference):
-    # 计算 ROUGE 指标
+
     rouge = Rouge()
     scores = rouge.get_scores(inference, target)
-    # 打印结果
+
 
     return scores[0]["rouge-1"]
 
