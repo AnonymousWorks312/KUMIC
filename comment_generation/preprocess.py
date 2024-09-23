@@ -18,12 +18,7 @@ from transformers import AutoModel, AutoTokenizer
 
 
 def store_data_from_command(out_path, file_name, store_command: Callable):
-    '''
-    创建文件夹，并存储文件
-    :param out_path:文件存储路径
-    :param file_name:文件名
-    :param store_command:用于存储文件的命令
-    '''
+
     if not os.path.exists(out_path):
         os.makedirs(out_path)
         print("Folder created")
@@ -76,7 +71,7 @@ def category_code4intents(dataset="tlcodesum", mode="train"):
             open(f"dataset/{dataset}/{mode}/label.{mode}", "r") as f_label:
         raw_code = [item for item in jsonlines.Reader(f_raw)]
         spl_code = [item for item in jsonlines.Reader(f_spl)]
-        code = [item for item in f_code.read().splitlines()]  # code分词后存储为当行数据
+        code = [item for item in f_code.read().splitlines()]  
         comment = [item for item in f_comment.read().splitlines()]
         label = [item for item in f_label.read().splitlines()]
         print(len(raw_code))
@@ -114,7 +109,7 @@ def category_code4all(dataset="tlcodesum", mode="train"):
             open(f"dataset/{dataset}/{mode}/label.{mode}", "r") as f_label:
         raw_code = [item for item in jsonlines.Reader(f_raw)]
         spl_code = [item for item in jsonlines.Reader(f_spl)]
-        code = [item for item in f_code.read().splitlines()]  # code分词后存储为当行数据
+        code = [item for item in f_code.read().splitlines()] 
         comment = [item for item in f_comment.read().splitlines()]
         label = [item for item in f_label.read().splitlines()]
         print(len(raw_code))
@@ -148,7 +143,7 @@ def category_code4intent_classifier(dataset="tlcodesum", mode="train"):
             open(f"dataset/{dataset}/{mode}/label.{mode}", "r") as f_label:
         raw_code = [item for item in jsonlines.Reader(f_raw)]
         spl_code = [item for item in jsonlines.Reader(f_spl)]
-        code = [item for item in f_code.read().splitlines()]  # code分词后存储为当行数据
+        code = [item for item in f_code.read().splitlines()] 
         comment = [item for item in f_comment.read().splitlines()]
         label = [item for item in f_label.read().splitlines()]
         print(len(raw_code))
@@ -183,12 +178,12 @@ def category_code4code_search_comment2code(dataset="tlcodesum", mode="train", ne
         comment = traincases[i]["comment"]
         comment_intent = traincases[i]["label"]
 
-        # 随机选择负样本
+   
         negative_samples_ids = random.sample([x for x in range(len(traincases)) if x != i], neg_samples_num)
-        # 构造负样本+正样本
+     
         for j in [i] + negative_samples_ids:
             '''
-            code search 数据格式：
+         
             1
             <CODESPLIT>{"comment_ids":"12345", "code_ids": "12345"}
             <CODESPLIT>{"comment_intent":"what", "code_intent": "done"}
@@ -223,10 +218,10 @@ def category_code4code_search_comment2code2(dataset="tlcodesum", mode="train"):
         comment = traincases[i]["comment"]
         comment_intent = traincases[i]["label"]
         j = i
-        # 构造负样本+正样本
+      
 
         '''
-        code search 数据格式：
+       
         1
         <CODESPLIT>{"comment_ids":"12345", "code_ids": "12345"}
         <CODESPLIT>{"comment_intent":"what", "code_intent": "done"}
@@ -261,12 +256,12 @@ def category_code4code_search_code2comment(dataset="tlcodesum", mode="train", ne
         code_info = {"code": traincases[i]["code"], "spl_code": traincases[i]["spl_code"]}
         code_intent = traincases[i]["label"]
 
-        # 随机选择负样本
+       
         negative_samples_ids = random.sample([x for x in range(len(traincases)) if x != i], neg_samples_num)
-        # 构造负样本+正样本
+        
         for j in [i] + negative_samples_ids:
             '''
-            code search 数据格式：
+           
             1
             <CODESPLIT>{"code_ids":"12345", "comment_ids": "12345"}
             <CODESPLIT>{"code_intent":"what", "comment_intent": "done"}
@@ -459,7 +454,7 @@ def preprocess_samples_quality_codet5(dataset="tlcodesum", mode="train"):
 def statistic_quality(dataset="tlcodesum", mode="train"):
     os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
     with open(f"dataset/{dataset}/{mode}/intents/quality.{mode}", "r+", encoding="utf8") as f:
-        for item in jsonlines.Reader(f):  # 只有一个json数据
+        for item in jsonlines.Reader(f):  
             print(np.average(list(item.values())))
             new_x = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
             new_y = [0 for i in new_x]
