@@ -18,9 +18,7 @@ Despite their successes, the state-of-the-art LLM-based approaches encounter dif
 To mitigate this issue, we propose IGMIC, a framework that leverages explicit guidance through informative demonstration examples to facilitate LLMs in generating intent-specific comments.
 Specifically, IGMIC focuses on automating the extraction of important statements that help derive the code comment specific to an intention. 
 This is accomplished by using a search model, which captures associations between paired components effectively while being lightweight to construct.
-% Specifically, IGMIC first utilizes a lightweight model for code search tasks to identify intent-specific important statements within code through attention mechanisms.
 Then, IGMIC augments each demonstration example with its intent-specific key statements, expecting LLMs to follow similar reasoning steps when generating desired comments.
-% Then, IGMIC augments each demonstration example with its intent-specific key statements, serving as a conduit for LLMs to efficiently establish intent-specific associations and generate accurate comments.
 We conduct extensive experiments to evaluate our approach, and the results demonstrate that our approach outperforms the state-of-the-art baselines by 19.49\%, 22.88\%, and 26.25\% in terms of BLEU, ROUGE-L and METEOR, respectively.
 
 
