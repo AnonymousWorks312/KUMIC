@@ -1,25 +1,28 @@
-<!-- # LLM_Comment_Generation
-Information-Augmented Prompting for Multi-Intent Comment Generation using Large Language Models
+<!-- # 
+Optimizing Knowledge Utilization for Multi-Intent Comment Generation with Large Language Modelsss
 
 Our paper is available on -->
 
 
 # De-duplication
-This is the implementation of IGMIC ( Information-Augmented Prompting for Multi-Intent Comment Generation using Large Language Models).
+This is the implementation of KUMIC ( Optimizing Knowledge Utilization for Multi-Intent Comment Generation with Large Language Models ).
 
 
 
 
 ## Abstract
 
-In contrast to conventional code comment generation methods that predominantly aim to provide a generic overview of a code snippet, multi-intent comment generation endeavors to produce comments from diverse perspectives, encompassing functionality descriptions and usage instructions.
-With the prevalent adoption of Large Language Models (LLMs) in code-centric tasks, these models have been leveraged for tackling the multi-intent comment generation challenge.
-Despite their successes, the state-of-the-art LLM-based approaches encounter difficulties in fully leveraging the intricate relationships among intents, code, and comments embedded within demonstration examples. 
-To mitigate this issue, we propose IGMIC, a framework that leverages explicit guidance through informative demonstration examples to facilitate LLMs in generating intent-specific comments.
-Specifically, IGMIC focuses on automating the extraction of important statements that help derive the code comment specific to an intention. 
-This is accomplished by using a search model, which captures associations between paired components effectively while being lightweight to construct.
-Then, IGMIC augments each demonstration example with its intent-specific key statements, expecting LLMs to follow similar reasoning steps when generating desired comments.
-We conduct extensive experiments to evaluate our approach, and the results demonstrate that our approach outperforms the state-of-the-art baselines by 19.49\%, 22.88\%, and 26.25\% in terms of BLEU, ROUGE-L and METEOR, respectively.
+Code comment generation aims to produce a generic overview of a code snippet, helping developers better understand and maintain code.
+However, generic summaries alone are insufficient to meet the diverse needs of practitioners; for example, developers expect the implementation insights to be presented in an untangled manner, while users seek clear usage instructions.
+This highlights the necessity of multi-intent comment generation.
+With the widespread adoption of Large Language Models (LLMs) for code-related tasks, these models have been leveraged to tackle the challenge of multi-intent comment generation. 
+Despite their successes, state-of-the-art LLM-based approaches often struggle to construct correct relationships among intents, code, and comments within a smaller number of demonstration examples.
+To mitigate this issue, we propose a framework named KUMIC for multi-intent comment generation.
+Built upon in-context learning, KUMIC leverages Chain-of-Thought (CoT) to optimize knowledge utilization for LLMs to generate intent-specific comments.
+Specifically, KUMIC first designs a retrieval mechanism to obtain similar demonstration examples, which exhibit high code-comment consistency.
+Then, KUMIC leverages CoT to guide LLMs to focus on statements facilitating the derivation of code comments aligned with specific intents.
+In this context, KUMIC constructs a mapping knowledge chain — linking code to intent-specific statements to comments — which enables LLMs to follow similar reasoning steps when generating the desired comments.
+We conduct extensive experiments to evaluate KUMIC, and the results demonstrate that KUMIC outperforms state-of-the-art baselines by 18.37\%, 24.66\%, 22.25\%, and 12.95\% in terms of BLEU, METEOR, ROUGE-L, and SentenceBERT, respectively.
 
 
 ## Get Started
