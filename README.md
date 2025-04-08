@@ -64,7 +64,7 @@ Ablation Experiment Results.
 
 <img src="./res/ablation.png" width="800" align="middle">
 
-### Discussion
+### The Supplementary Result of RQ4
 Performances of KUMIC and KUMIC w/o CS on different scale of training data.
 <img src="./res/discussion.png" width="800" align="middle">
 
