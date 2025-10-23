@@ -22,7 +22,7 @@ Built upon in-context learning, KUMIC leverages Chain-of-Thought (CoT) to optimi
 Specifically, KUMIC first designs a retrieval mechanism to obtain similar demonstration examples, which exhibit high code-comment consistency.
 Then, KUMIC leverages CoT to guide LLMs to focus on statements facilitating the derivation of code comments aligned with specific intents.
 In this context, KUMIC constructs a mapping knowledge chain — linking code to intent-specific statements to comments — which enables LLMs to follow similar reasoning steps when generating the desired comments.
-We conduct extensive experiments to evaluate KUMIC, and the results demonstrate that KUMIC outperforms state-of-the-art baselines by 18.37\%, 24.66\%, 22.25\%, and 12.95\% in terms of BLEU, METEOR, ROUGE-L, and SentenceBERT, respectively.
+We conduct extensive experiments to evaluate KUMIC, and the results demonstrate that KUMIC outperforms state-of-the-art baselines by 14.49\%, 22.41\%, 20.72\%, and 12.94\% in terms of BLEU, METEOR, ROUGE-L, and SBERT, respectively.
 
 
 ## Get Started
@@ -64,7 +64,8 @@ Ablation Experiment Results.
 
 <img src="./res/ablation.png" width="800" align="middle">
 
-### The Supplementary Result of RQ4
+### The Supplementary Result of RQ3
 Performances of KUMIC and KUMIC w/o CS on different scale of training data.
 <img src="./res/discussion.png" width="800" align="middle">
+
 
