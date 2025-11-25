@@ -65,11 +65,12 @@ Performances of KUMIC and baselines on each intent category on Qwen2.5-Coder.
 ### The Supplementary Result of RQ2
 Ablation Experiment Results.
 
-<img src="./res/ablation1.png" width="800" align="middle">
+<img src="./res/ablation.png" width="800" align="middle">
 
 ### The Supplementary Result of RQ3
 Performances of KUMIC and KUMIC w/o CS on different scale of training data.
 <img src="./res/discussion.png" width="800" align="middle">
+
 
 
 
