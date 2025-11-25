@@ -59,6 +59,9 @@ Performances of KUMIC and baselines on each intent category on CodeLlama.
 Performances of KUMIC and baselines on each intent category on Llama3.
 <img src="./res/intent_llama3.png" width="800" align="middle">
 
+Performances of KUMIC and baselines on each intent category on Qwen2.5-Coder.
+<img src="./res/intent_qwen.png" width="800" align="middle">
+
 ### The Supplementary Result of RQ2
 Ablation Experiment Results.
 
@@ -67,5 +70,6 @@ Ablation Experiment Results.
 ### The Supplementary Result of RQ3
 Performances of KUMIC and KUMIC w/o CS on different scale of training data.
 <img src="./res/discussion.png" width="800" align="middle">
+
 
 
