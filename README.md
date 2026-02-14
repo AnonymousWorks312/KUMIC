@@ -69,7 +69,7 @@ Performances of KUMIC and baselines on each intent category on CodeLlama.
 | ----------- | ----: | -------------- | -----: | ----: |
 | FSMIC_0shot | 12.25 | [9.34, 15.16]  |  12.26 | 13.96 |
 | FSMIC_3shot | 22.64 | [18.49, 26.79] |  22.63 | 25.05 |
-| FSMIC_5shot | 23.63 | [17.18, 30.08] |  24.40 | 28.40 |
+| FSMIC_5shot | 23.38 | [17.18, 30.08] |  24.40 | 28.40 |
 | KUMIC_0shot | 19.77 | [17.93, 21.61] |  19.85 | 20.93 |
 | KUMIC_3shot | 29.13 | [27.28, 30.99] |  28.72 | 30.27 |
 | KUMIC_5shot | 29.51 | [27.70, 31.33] |  29.10 | 30.63 |
@@ -79,7 +79,7 @@ Performances of KUMIC and baselines on each intent category on CodeLlama.
 
 <td valign="top" width="50%">
 
-<img src="./res/token_bleu.png" width="100%">
+<img src="./res/semantic_bleu.png" width="100%">
 
 </td>
 </tr>
@@ -103,7 +103,7 @@ Performances of KUMIC and baselines on each intent category on CodeLlama.
 
 <td valign="top" width="50%">
 
-<img src="./res/token_bleu.png" width="100%">
+<img src="./res/semantic_bleu.png" width="100%">
 
 </td>
 </tr>
@@ -130,7 +130,7 @@ Performances of KUMIC and baselines on each intent category on CodeLlama.
 
 <td valign="top" width="50%">
 
-<img src="./res/token_bleu.png" width="100%">
+<img src="./res/semantic_meteor.png" width="100%">
 
 </td>
 </tr>
@@ -182,7 +182,7 @@ Performances of KUMIC and baselines on each intent category on CodeLlama.
 
 <td valign="top" width="50%">
 
-<img src="./res/token_bleu.png" width="100%">
+<img src="./res/semantic_rough.png" width="100%">
 
 </td>
 </tr>
@@ -196,7 +196,7 @@ Performances of KUMIC and baselines on each intent category on CodeLlama.
 | Method      |  Mean | 95% CI         | Median |   P90 |
 | ----------- | ----: | -------------- | -----: | ----: |
 | FSMIC_0shot | 29.62 | [26.68, 32.55] |  29.61 | 31.33 |
-| FSMIC_3shot | 41.76 | [37.02, 46.49] |  41.75 | 44.49 |
+| FSMIC_3shot | 41.75 | [37.02, 46.49] |  41.75 | 44.49 |
 | FSMIC_5shot | 42.41 | [34.77, 50.05] |  42.40 | 46.85 |
 | KUMIC_0shot | 36.82 | [32.05, 41.58] |  35.72 | 39.77 |
 | KUMIC_3shot | 47.54 | [44.41, 50.67] |  46.88 | 49.49 |
@@ -235,7 +235,7 @@ Performances of KUMIC and baselines on each intent category on CodeLlama.
 
 <td valign="top" width="50%">
 
-<img src="./res/token_bleu.png" width="100%">
+<img src="./res/semantic_sbert.png" width="100%">
 
 </td>
 </tr>
@@ -363,6 +363,7 @@ public boolean isEmpty() {
 | 1 | Grammatically broken | True empty list return. |
 | 3 | Understandable but awkward | Return true when list empty. |
 | 5 | Fluent and natural | Returns true if the list contains no elements. |
+
 
 
 
