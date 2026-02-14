@@ -77,6 +77,17 @@ Performances of KUMIC and KUMIC w/o CS on different scale of training data.
 #### Per-Intent Human Evaluation Scores
 <img src="./res/human_eval_pre.png" width="1000" align="middle">
 
+#### Pairwise Inter-rater κ
+|        |    R1 |    R2 |    R3 |    R4 |    R5 |    R6 |
+| ------ | ----: | ----: | ----: | ----: | ----: | ----: |
+| **R1** | 1.000 | 0.793 | 0.600 | 0.819 | 0.834 | 0.791 |
+| **R2** | 0.793 | 1.000 | 0.521 | 0.805 | 0.829 | 0.829 |
+| **R3** | 0.600 | 0.521 | 1.000 | 0.556 | 0.509 | 0.539 |
+| **R4** | 0.819 | 0.805 | 0.556 | 1.000 | 0.793 | 0.811 |
+| **R5** | 0.834 | 0.829 | 0.509 | 0.793 | 1.000 | 0.803 |
+| **R6** | 0.791 | 0.829 | 0.539 | 0.811 | 0.803 | 1.000 |
+
+
 
 #### Evaluation Rubric
 **Example Code**
@@ -118,6 +129,7 @@ public boolean isEmpty() {
 | 1 | Grammatically broken | True empty list return. |
 | 3 | Understandable but awkward | Return true when list empty. |
 | 5 | Fluent and natural | Returns true if the list contains no elements. |
+
 
 
 
