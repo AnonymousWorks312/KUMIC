@@ -78,6 +78,46 @@ Performances of KUMIC and KUMIC w/o CS on different scale of training data.
 <img src="./res/human_eval_pre.png" width="1000" align="middle">
 
 
+#### Evaluation Rubric
+**Example Code**
+
+```java
+public boolean isEmpty() {
+	return size == 0;
+}
+```
+
+###### Accuracy
+
+| Score | Anchor Description | Example |
+| --- | --- | --- |
+| 1 | Comment contradicts code semantics | Deletes all elements in the list. |
+| 3 | Mostly correct but contains minor inaccuracies | Checks whether the list has elements. |
+| 5 | Fully accurate and semantically precise | Returns true if the collection is empty. |
+
+###### Adequacy
+
+| Score | Anchor | Example |
+| --- | --- | --- |
+| 1 | Severely incomplete | Returns a boolean value. |
+| 3 | Covers core behavior | Checks if the list is empty. |
+| 5 | Fully captures essential logic and constraints | Returns true if the list contains no elements by comparing size to zero. |
+
+###### Intention
+
+| Score | Anchor | Example |
+| --- | --- | --- |
+| 1 | Wrong intent category | Initializes the list. (Wrong intent) |
+| 3 | Intent partially reflected | This method handles list operations. (Intent vague) |
+| 5 | Intent explicitly and clearly expressed | Returns true if the list contains no elements. (Property intent clearly expressed) |
+
+###### Naturalness
+
+| Score | Anchor | Example |
+| --- | --- | --- |
+| 1 | Grammatically broken | True empty list return. |
+| 3 | Understandable but awkward | Return true when list empty. |
+| 5 | Fluent and natural | Returns true if the list contains no elements. |
 
 
 
