@@ -56,6 +56,123 @@ The dataset we used are funcom.test, funcom.train, tlcodesum.test and tlcodesum.
 Performances of KUMIC and baselines on each intent category on CodeLlama.
 <img src="./res/intent_codellama.png" width="800" align="middle">
 
+### Descriptive statistics across runs
+
+#### BLEU
+
+##### Token-based retrieval strategy
+<table>
+<tr>
+<td valign="top" width="50%">
+
+| Method      |  Mean | 95% CI         | Median |   P90 |
+| ----------- | ----: | -------------- | -----: | ----: |
+| FSMIC_0shot | 12.25 | [9.34, 15.16]  |  12.25 | 13.96 |
+| FSMIC_3shot | 22.63 | [18.48, 26.77] |  22.62 | 25.05 |
+| FSMIC_5shot | 25.89 | [19.83, 31.94] |  27.39 | 28.40 |
+| KUMIC_0shot | 19.78 | [18.18, 21.37] |  19.71 | 20.69 |
+| KUMIC_3shot | 29.13 | [27.28, 30.99] |  28.92 | 30.27 |
+| KUMIC_5shot | 29.51 | [27.70, 31.33] |  29.29 | 30.63 |
+
+</td>
+
+<td valign="top" width="50%">
+
+<img src="./res/token_bleu.png" width="100%">
+
+</td>
+</tr>
+</table>
+
+#### METEOR
+##### Token-based retrieval strategy
+<table>
+<tr>
+<td valign="top" width="50%">
+
+| Method      |  Mean | 95% CI         | Median |   P90 |
+| ----------- | ----: | -------------- | -----: | ----: |
+| FSMIC_0shot | 17.28 | [14.36, 20.20] |  17.28 | 18.99 |
+| FSMIC_3shot | 25.56 | [20.84, 30.28] |  25.55 | 28.28 |
+| FSMIC_5shot | 26.01 | [18.40, 33.62] |  26.00 | 30.43 |
+| KUMIC_0shot | 18.93 | [15.35, 22.52] |  18.00 | 21.12 |
+| KUMIC_3shot | 28.52 | [26.07, 30.96] |  27.90 | 30.01 |
+| KUMIC_5shot | 29.09 | [26.70, 31.48] |  28.50 | 30.56 |
+
+
+</td>
+
+<td valign="top" width="50%">
+
+<img src="./res/token_meteor.png" width="100%">
+
+</td>
+</tr>
+</table>
+
+#### Rough-L
+##### Token-based retrieval strategy
+<table>
+<tr>
+<td valign="top" width="50%">
+
+| Method      |  Mean | 95% CI         | Median |   P90 |
+| ----------- | ----: | -------------- | -----: | ----: |
+| FSMIC_0shot | 29.62 | [26.68, 32.55] |  29.61 | 31.33 |
+| FSMIC_3shot | 41.76 | [37.02, 46.49] |  41.75 | 44.49 |
+| FSMIC_5shot | 42.41 | [34.77, 50.05] |  42.40 | 46.85 |
+| KUMIC_0shot | 36.82 | [32.05, 41.58] |  35.72 | 39.77 |
+| KUMIC_3shot | 47.54 | [44.41, 50.67] |  46.88 | 49.49 |
+| KUMIC_5shot | 47.99 | [44.86, 51.12] |  47.33 | 49.95 |
+
+
+
+</td>
+
+<td valign="top" width="50%">
+
+<img src="./res/token_rough.png" width="100%">
+
+</td>
+</tr>
+</table>
+
+#### SBERT
+##### Token-based retrieval strategy
+<table>
+<tr>
+<td valign="top" width="50%">
+
+| Method      |  Mean | 95% CI         | Median |   P90 |
+| ----------- | ----: | -------------- | -----: | ----: |
+| FSMIC_0shot | 56.16 | [53.25, 59.07] |  56.16 | 57.86 |
+| FSMIC_3shot | 62.33 | [57.61, 67.04] |  62.32 | 65.04 |
+| FSMIC_5shot | 62.63 | [54.99, 70.26] |  62.61 | 67.06 |
+| KUMIC_0shot | 59.65 | [55.43, 63.87] |  59.13 | 62.25 |
+| KUMIC_3shot | 66.82 | [64.75, 68.90] |  66.29 | 68.09 |
+| KUMIC_5shot | 66.87 | [64.80, 68.94] |  66.34 | 68.14 |
+
+
+</td>
+
+<td valign="top" width="50%">
+
+<img src="./res/token_sentencebert.png" width="100%">
+
+</td>
+</tr>
+</table>
+
+#### Effect Sizes (Cliff’s δ) — KUMIC vs FSMIC
+##### Token-based retrieval strategy
+
+| Comparison                     |     BLEU |   METEOR |  ROUGE-L |    SBERT |
+| ------------------------------ | -------: | -------: | -------: | -------: |
+| KUMIC_3shot vs FSMIC_3shot     |     1.00 |     0.38 |     1.00 |     1.00 |
+| KUMIC_5shot vs FSMIC_5shot     |     1.00 |     0.25 |     0.75 |     0.63 |
+| **KUMIC_3shot vs FSMIC_5shot** | **0.50** | **0.12** | **0.75** | **0.63** |
+
+
 Performances of KUMIC and baselines on each intent category on Llama3.
 <img src="./res/intent_llama3.png" width="800" align="middle">
 
@@ -75,7 +192,7 @@ Performances of KUMIC and KUMIC w/o CS on different scale of training data.
 ### The Supplementary Result of RQ4
 
 #### Per-Intent Human Evaluation Scores
-<img src="./res/human_eval_pre.png" width="1000" align="middle">
+<img src="./res/human_eval_pre.png" width="800" align="middle">
 
 #### Pairwise Inter-rater κ
 |        |    R1 |    R2 |    R3 |    R4 |    R5 |    R6 |
@@ -129,6 +246,7 @@ public boolean isEmpty() {
 | 1 | Grammatically broken | True empty list return. |
 | 3 | Understandable but awkward | Return true when list empty. |
 | 5 | Fluent and natural | Returns true if the list contains no elements. |
+
 
 
 
