@@ -52,9 +52,7 @@ package: PyTorch 2.3.0 framework with Python 3.8.
 The dataset we used are funcom.test, funcom.train, tlcodesum.test and tlcodesum.train.  
 
 ## Supplementary result
-### The Supplementary Result of RQ1
-Performances of KUMIC and baselines on each intent category on CodeLlama.
-<img src="./res/intent_codellama.png" width="800" align="middle">
+
 
 ### Descriptive statistics across runs
 
@@ -301,6 +299,10 @@ Performances of KUMIC and baselines on each intent category on Llama3.
 Performances of KUMIC and baselines on each intent category on Qwen2.5-Coder.
 <img src="./res/qwen_intents.png" width="800" align="middle">
 
+### The Supplementary Result of RQ1
+Performances of KUMIC and baselines on each intent category on CodeLlama.
+<img src="./res/intent_codellama.png" width="800" align="middle">
+
 ### The Supplementary Result of RQ2
 Ablation Experiment Results.
 
@@ -368,6 +370,7 @@ public boolean isEmpty() {
 | 1 | Grammatically broken | True empty list return. |
 | 3 | Understandable but awkward | Return true when list empty. |
 | 5 | Fluent and natural | Returns true if the list contains no elements. |
+
 
 
 
