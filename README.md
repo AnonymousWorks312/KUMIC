@@ -72,6 +72,13 @@ Performances of KUMIC and KUMIC w/o CS on different scale of training data.
 <img src="./res/discussion.png" width="800" align="middle">
 
 
+### The Supplementary Result of RQ4
+
+#### Per-Intent Human Evaluation Scores
+<img src="./res/human_eval_pre.png" width="1000" align="middle">
+
+
+
 
 
 
