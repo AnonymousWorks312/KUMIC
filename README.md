@@ -60,6 +60,31 @@ Performances of KUMIC and baselines on each intent category on CodeLlama.
 
 #### BLEU
 
+##### Semantic-based retrieval strategy
+<table>
+<tr>
+<td valign="top" width="50%">
+
+| Method      |  Mean | 95% CI         | Median |   P90 |
+| ----------- | ----: | -------------- | -----: | ----: |
+| FSMIC_0shot | 12.25 | [9.34, 15.16]  |  12.26 | 13.96 |
+| FSMIC_3shot | 22.64 | [18.49, 26.79] |  22.63 | 25.05 |
+| FSMIC_5shot | 23.63 | [17.18, 30.08] |  24.40 | 28.40 |
+| KUMIC_0shot | 19.77 | [17.93, 21.61] |  19.85 | 20.93 |
+| KUMIC_3shot | 29.13 | [27.28, 30.99] |  28.72 | 30.27 |
+| KUMIC_5shot | 29.51 | [27.70, 31.33] |  29.10 | 30.63 |
+
+
+</td>
+
+<td valign="top" width="50%">
+
+<img src="./res/token_bleu.png" width="100%">
+
+</td>
+</tr>
+</table>
+
 ##### Token-based retrieval strategy
 <table>
 <tr>
@@ -85,6 +110,32 @@ Performances of KUMIC and baselines on each intent category on CodeLlama.
 </table>
 
 #### METEOR
+
+##### Semantic-based retrieval strategy
+<table>
+<tr>
+<td valign="top" width="50%">
+
+| Method      |  Mean | 95% CI         | Median |   P90 |
+| ----------- | ----: | -------------- | -----: | ----: |
+| FSMIC_0shot | 17.28 | [14.36, 20.20] |  17.28 | 18.99 |
+| FSMIC_3shot | 25.55 | [20.83, 30.27] |  25.55 | 28.28 |
+| FSMIC_5shot | 26.01 | [18.40, 33.62] |  26.00 | 30.43 |
+| KUMIC_0shot | 18.94 | [15.35, 22.53] |  18.40 | 21.12 |
+| KUMIC_3shot | 28.52 | [26.07, 30.96] |  27.90 | 30.01 |
+| KUMIC_5shot | 29.09 | [26.70, 31.48] |  28.68 | 30.56 |
+
+
+</td>
+
+<td valign="top" width="50%">
+
+<img src="./res/token_bleu.png" width="100%">
+
+</td>
+</tr>
+</table>
+
 ##### Token-based retrieval strategy
 <table>
 <tr>
@@ -111,6 +162,32 @@ Performances of KUMIC and baselines on each intent category on CodeLlama.
 </table>
 
 #### Rough-L
+
+##### Semantic-based retrieval strategy
+<table>
+<tr>
+<td valign="top" width="50%">
+
+| Method      |  Mean | 95% CI         | Median |   P90 |
+| ----------- | ----: | -------------- | -----: | ----: |
+| FSMIC_0shot | 29.62 | [26.68, 32.55] |  29.62 | 31.33 |
+| FSMIC_3shot | 41.75 | [37.02, 46.49] |  41.74 | 44.49 |
+| FSMIC_5shot | 42.41 | [34.77, 50.05] |  42.40 | 46.85 |
+| KUMIC_0shot | 36.82 | [32.05, 41.58] |  35.51 | 39.77 |
+| KUMIC_3shot | 47.54 | [44.41, 50.67] |  46.97 | 49.49 |
+| KUMIC_5shot | 47.99 | [44.86, 51.12] |  47.42 | 49.95 |
+
+
+</td>
+
+<td valign="top" width="50%">
+
+<img src="./res/token_bleu.png" width="100%">
+
+</td>
+</tr>
+</table>
+
 ##### Token-based retrieval strategy
 <table>
 <tr>
@@ -138,6 +215,32 @@ Performances of KUMIC and baselines on each intent category on CodeLlama.
 </table>
 
 #### SBERT
+
+##### Semantic-based retrieval strategy
+<table>
+<tr>
+<td valign="top" width="50%">
+
+| Method      |  Mean | 95% CI         | Median |   P90 |
+| ----------- | ----: | -------------- | -----: | ----: |
+| FSMIC_0shot | 56.16 | [53.25, 59.07] |  56.17 | 57.86 |
+| FSMIC_3shot | 62.33 | [57.61, 67.04] |  62.33 | 65.04 |
+| FSMIC_5shot | 62.63 | [54.99, 70.26] |  62.62 | 67.06 |
+| KUMIC_0shot | 59.65 | [55.43, 63.87] |  59.10 | 62.25 |
+| KUMIC_3shot | 66.82 | [64.75, 68.90] |  66.44 | 68.09 |
+| KUMIC_5shot | 66.87 | [64.80, 68.94] |  66.52 | 68.14 |
+
+
+</td>
+
+<td valign="top" width="50%">
+
+<img src="./res/token_bleu.png" width="100%">
+
+</td>
+</tr>
+</table>
+
 ##### Token-based retrieval strategy
 <table>
 <tr>
@@ -164,13 +267,27 @@ Performances of KUMIC and baselines on each intent category on CodeLlama.
 </table>
 
 #### Effect Sizes (Cliff’s δ) — KUMIC vs FSMIC
+Interpretation: Cliff’s δ values are interpreted: 0.147 (small), 0.33 (medium), and 0.474 (large). Values close to 1.0 indicate a near-complete dominance of one method over the other across runs.
+
+
+##### Semantic-based retrieval strategy
+| Comparison                 | BLEU | METEOR | ROUGE-L | SBERT |
+| -------------------------- | ---: | -----: | ------: | ----: |
+| KUMIC_3shot vs FSMIC_3shot | 1.00 |   0.38 |    1.00 |  1.00 |
+| KUMIC_5shot vs FSMIC_5shot | 1.00 |   0.25 |    0.75 |  0.63 |
+| KUMIC_3shot vs FSMIC_5shot | 0.50 |   0.13 |    0.75 |  0.63 |
+
+
+
 ##### Token-based retrieval strategy
+
 
 | Comparison                     |     BLEU |   METEOR |  ROUGE-L |    SBERT |
 | ------------------------------ | -------: | -------: | -------: | -------: |
 | KUMIC_3shot vs FSMIC_3shot     |     1.00 |     0.38 |     1.00 |     1.00 |
 | KUMIC_5shot vs FSMIC_5shot     |     1.00 |     0.25 |     0.75 |     0.63 |
-| **KUMIC_3shot vs FSMIC_5shot** | **0.50** | **0.12** | **0.75** | **0.63** |
+| KUMIC_3shot vs FSMIC_5shot | 0.5 | 0.12 | 0.75 | 0.63 |
+
 
 
 Performances of KUMIC and baselines on each intent category on Llama3.
@@ -246,6 +363,7 @@ public boolean isEmpty() {
 | 1 | Grammatically broken | True empty list return. |
 | 3 | Understandable but awkward | Return true when list empty. |
 | 5 | Fluent and natural | Returns true if the list contains no elements. |
+
 
 
 
