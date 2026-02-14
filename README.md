@@ -68,7 +68,7 @@ Performances of KUMIC and baselines on each intent category on CodeLlama.
 | Method      |  Mean | 95% CI         | Median |   P90 |
 | ----------- | ----: | -------------- | -----: | ----: |
 | FSMIC_0shot | 12.25 | [9.34, 15.16]  |  12.26 | 13.96 |
-| FSMIC_3shot | 22.64 | [18.49, 26.79] |  22.63 | 25.05 |
+| FSMIC_3shot | 22.63 | [18.49, 26.79] |  22.63 | 25.05 |
 | FSMIC_5shot | 23.38 | [17.18, 30.08] |  24.40 | 28.40 |
 | KUMIC_0shot | 19.77 | [17.93, 21.61] |  19.85 | 20.93 |
 | KUMIC_3shot | 29.13 | [27.28, 30.99] |  28.72 | 30.27 |
@@ -92,12 +92,13 @@ Performances of KUMIC and baselines on each intent category on CodeLlama.
 
 | Method      |  Mean | 95% CI         | Median |   P90 |
 | ----------- | ----: | -------------- | -----: | ----: |
-| FSMIC_0shot | 12.25 | [9.34, 15.16]  |  12.25 | 13.96 |
-| FSMIC_3shot | 22.63 | [18.48, 26.77] |  22.62 | 25.05 |
-| FSMIC_5shot | 25.89 | [19.83, 31.94] |  27.39 | 28.40 |
-| KUMIC_0shot | 19.78 | [18.18, 21.37] |  19.71 | 20.69 |
-| KUMIC_3shot | 29.13 | [27.28, 30.99] |  28.92 | 30.27 |
-| KUMIC_5shot | 29.51 | [27.70, 31.33] |  29.29 | 30.63 |
+| FSMIC_0shot | 12.25 | [9.34, 15.16]  |  12.26 | 13.96 |
+| FSMIC_3shot | 24.20 | [20.58, 27.82] |  24.19 | 26.91 |
+| FSMIC_5shot | 23.08 | [17.38, 28.78] |  23.06 | 26.79 |
+| KUMIC_0shot | 19.77 | [17.93, 21.61] |  19.85 | 20.93 |
+| KUMIC_3shot | 29.78 | [28.15, 31.40] |  29.57 | 30.92 |
+| KUMIC_5shot | 30.13 | [28.48, 31.78] |  29.91 | 31.25 |
+
 
 </td>
 
@@ -144,11 +145,12 @@ Performances of KUMIC and baselines on each intent category on CodeLlama.
 | Method      |  Mean | 95% CI         | Median |   P90 |
 | ----------- | ----: | -------------- | -----: | ----: |
 | FSMIC_0shot | 17.28 | [14.36, 20.20] |  17.28 | 18.99 |
-| FSMIC_3shot | 25.56 | [20.84, 30.28] |  25.55 | 28.28 |
-| FSMIC_5shot | 26.01 | [18.40, 33.62] |  26.00 | 30.43 |
-| KUMIC_0shot | 18.93 | [15.35, 22.52] |  18.00 | 21.12 |
-| KUMIC_3shot | 28.52 | [26.07, 30.96] |  27.90 | 30.01 |
-| KUMIC_5shot | 29.09 | [26.70, 31.48] |  28.50 | 30.56 |
+| FSMIC_3shot | 25.87 | [22.15, 29.59] |  25.86 | 28.59 |
+| FSMIC_5shot | 24.60 | [19.01, 30.19] |  24.59 | 28.63 |
+| KUMIC_0shot | 18.94 | [15.35, 22.53] |  18.40 | 21.12 |
+| KUMIC_3shot | 29.47 | [27.85, 31.10] |  28.85 | 30.96 |
+| KUMIC_5shot | 29.47 | [27.89, 31.05] |  28.88 | 30.96 |
+
 
 
 </td>
@@ -195,12 +197,13 @@ Performances of KUMIC and baselines on each intent category on CodeLlama.
 
 | Method      |  Mean | 95% CI         | Median |   P90 |
 | ----------- | ----: | -------------- | -----: | ----: |
-| FSMIC_0shot | 29.62 | [26.68, 32.55] |  29.61 | 31.33 |
-| FSMIC_3shot | 41.75 | [37.02, 46.49] |  41.75 | 44.49 |
-| FSMIC_5shot | 42.41 | [34.77, 50.05] |  42.40 | 46.85 |
-| KUMIC_0shot | 36.82 | [32.05, 41.58] |  35.72 | 39.77 |
-| KUMIC_3shot | 47.54 | [44.41, 50.67] |  46.88 | 49.49 |
-| KUMIC_5shot | 47.99 | [44.86, 51.12] |  47.33 | 49.95 |
+| FSMIC_0shot | 29.62 | [26.68, 32.55] |  29.62 | 31.33 |
+| FSMIC_3shot | 43.54 | [40.06, 47.02] |  43.53 | 45.77 |
+| FSMIC_5shot | 41.77 | [35.77, 47.77] |  41.26 | 44.91 |
+| KUMIC_0shot | 36.82 | [32.05, 41.58] |  35.51 | 39.77 |
+| KUMIC_3shot | 48.64 | [46.99, 50.29] |  47.98 | 50.39 |
+| KUMIC_5shot | 48.96 | [47.29, 50.63] |  48.30 | 50.66 |
+
 
 
 
@@ -248,19 +251,20 @@ Performances of KUMIC and baselines on each intent category on CodeLlama.
 
 | Method      |  Mean | 95% CI         | Median |   P90 |
 | ----------- | ----: | -------------- | -----: | ----: |
-| FSMIC_0shot | 56.16 | [53.25, 59.07] |  56.16 | 57.86 |
-| FSMIC_3shot | 62.33 | [57.61, 67.04] |  62.32 | 65.04 |
-| FSMIC_5shot | 62.63 | [54.99, 70.26] |  62.61 | 67.06 |
-| KUMIC_0shot | 59.65 | [55.43, 63.87] |  59.13 | 62.25 |
-| KUMIC_3shot | 66.82 | [64.75, 68.90] |  66.29 | 68.09 |
-| KUMIC_5shot | 66.87 | [64.80, 68.94] |  66.34 | 68.14 |
+| FSMIC_0shot | 56.16 | [53.25, 59.07] |  56.17 | 57.86 |
+| FSMIC_3shot | 62.15 | [58.63, 65.67] |  62.14 | 64.86 |
+| FSMIC_5shot | 59.94 | [54.02, 65.86] |  59.92 | 63.77 |
+| KUMIC_0shot | 59.65 | [55.43, 63.87] |  59.10 | 62.25 |
+| KUMIC_3shot | 67.54 | [65.99, 69.09] |  67.01 | 68.91 |
+| KUMIC_5shot | 67.41 | [65.86, 68.96] |  66.88 | 68.79 |
+
 
 
 </td>
 
 <td valign="top" width="50%">
 
-<img src="./res/token_sentencebert.png" width="100%">
+<img src="./res/token_sbert.png" width="100%">
 
 </td>
 </tr>
@@ -282,11 +286,12 @@ Interpretation: Cliff’s δ values are interpreted: 0.147 (small), 0.33 (medium
 ##### Token-based retrieval strategy
 
 
-| Comparison                     |     BLEU |   METEOR |  ROUGE-L |    SBERT |
-| ------------------------------ | -------: | -------: | -------: | -------: |
-| KUMIC_3shot vs FSMIC_3shot     |     1.00 |     0.38 |     1.00 |     1.00 |
-| KUMIC_5shot vs FSMIC_5shot     |     1.00 |     0.25 |     0.75 |     0.63 |
-| KUMIC_3shot vs FSMIC_5shot | 0.5 | 0.12 | 0.75 | 0.63 |
+| Comparison                 | BLEU | METEOR | ROUGE-L | SBERT |
+| -------------------------- | ---: | -----: | ------: | ----: |
+| KUMIC_3shot vs FSMIC_3shot | 1.00 |   0.88 |    1.00 |  1.00 |
+| KUMIC_5shot vs FSMIC_5shot | 1.00 |   0.75 |    1.00 |  1.00 |
+| KUMIC_3shot vs FSMIC_5shot | 1.00 |   0.88 |    1.00 |  1.00 |
+
 
 
 
@@ -363,6 +368,7 @@ public boolean isEmpty() {
 | 1 | Grammatically broken | True empty list return. |
 | 3 | Understandable but awkward | Return true when list empty. |
 | 5 | Fluent and natural | Returns true if the list contains no elements. |
+
 
 
 
